@@ -24,7 +24,7 @@ const ButtonTag = styled.button`
   }
 `
 
-export default function Button1({children, onClick}) {
+export default function Button({children, onClick}) {
   return (
     <ButtonTag onClick={onClick}>{children}</ButtonTag>
   )

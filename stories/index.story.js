@@ -1,15 +1,15 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
 
-import Button1 from '../src/components/Button1'
+import Button from '../src/components/Button'
 import Input from '../src/components/Input'
 import ValidInput from '../src/containers/Input'
 import PollListItem from '../src/components/PollListItem'
-import Button2 from '../src/components/Button2'
+import Button2 from '../src/components/New poll'
 
 storiesOf('Button', module)
   .add('Button1', () => (
-    <Button1>Add new poll</Button1>
+    <Button>Add new poll</Button>
   ))
   .add('Button2', () => (
     <Button2>New poll</Button2>
