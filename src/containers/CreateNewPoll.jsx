@@ -91,6 +91,7 @@ export default function CreateNewPoll(){
   const [isFormValid, setIsFormValid] = useState(false)
   const [id, setID] = useState(2)
   const [location, setLocation] = useLocation();
+  const [sendPoll, setSend] = useState(false)
 
   const addNewOption = () => {
     let arrayOptions = options;
@@ -136,10 +137,10 @@ export default function CreateNewPoll(){
       let check;
       options.forEach(element => {
         if(element.id==name)
-          check = element.value.length>0
+          check = element.value===""
         setOptions( prevState => {
           const newState = [...prevState]
-          newState[name - 1].validate = check
+          newState[name - 1].validate = !check
           return newState
         })
         // setOptions(arrayOptions)
@@ -165,6 +166,7 @@ export default function CreateNewPoll(){
   }
 
   const createPoll = (e) => {
+    setSend(true)
     const optionsPolls = []
     options.forEach((item) => {
       if (item.value != "")
@@ -174,7 +176,9 @@ export default function CreateNewPoll(){
       "question": namePoll.value,
       "options": optionsPolls
     }
-    api.createPoll(poll).then(() => setLocation("/"))
+    api.createPoll(poll).then(() =>
+    { setSend(false)
+      setLocation("/")})
   }
 
 
@@ -216,8 +220,9 @@ return(
       ))}
       <AddOptions onClick={addNewOption}>+ Add another options</AddOptions>
       </PollForm>
-      <ButtonCreatePoll onClick={createPoll} disabled={!isFormValid} >Create poll</ButtonCreatePoll>
-        {/* <Button type="submit"><Spinner color = "#FFF" scale={0.75} margin={'0 154px'}></Spinner></Button>  */}
+      <ButtonCreatePoll onClick={createPoll} disabled={!isFormValid} >
+        {!sendPoll? "Create poll" : <Spinner color = "#FFF" scale={0.75} margin={'0 154px'}></Spinner>}
+        </ButtonCreatePoll>
     </CreateNewPooll>
     )
 }
