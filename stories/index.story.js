@@ -1,13 +1,18 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
 
-import Button from '../src/components/Button'
+import Button1 from '../src/components/Button1'
 import Input from '../src/components/Input'
+import ValidInput from '../src/containers/Input'
 import PollListItem from '../src/components/PollListItem'
+import Button2 from '../src/components/Button2'
 
 storiesOf('Button', module)
-  .add('Button', () => (
-    <Button>Add new poll</Button>
+  .add('Button1', () => (
+    <Button1>Add new poll</Button1>
+  ))
+  .add('Button2', () => (
+    <Button2>New poll</Button2>
   ))
   // .add('Button With Spinner', () => (
   //   <Button loading={true}>Add new poll</Button>
@@ -23,6 +28,7 @@ storiesOf('Input', module)
   .add('Basic Input', () => (
     <Input />
   ))
+  
 
 storiesOf('PollListItem', module)
   .add('PollListItems', () => {
